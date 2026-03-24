@@ -170,5 +170,9 @@
  "_PROTOCOL": "代理協議",
  "_HOST": "主機地址",
  "_PORT": "端口",
- "ZOOM_IN_OUT": "放大/縮小"
+ "ZOOM_IN_OUT": "放大/縮小",
+ "_DOWNLOAD": "下載",
+ "_DOWNLOAD_STARTED": "下載開始",
+ "_DOWNLOAD_DONE": "下載完成",
+ "_DOWNLOAD_FAILED": "下載失敗"
 }

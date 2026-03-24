@@ -170,5 +170,9 @@
   "_PROTOCOL": "Protocol",
   "_HOST": "Host",
   "_PORT": "Port",
-  "ZOOM_IN_OUT": "확대/축소"
+  "ZOOM_IN_OUT": "확대/축소",
+  "_DOWNLOAD": "다운로드",
+  "_DOWNLOAD_STARTED": "다운로드 시작",
+  "_DOWNLOAD_DONE": "다운로드 완료",
+  "_DOWNLOAD_FAILED": "다운로드 실패"
 }
