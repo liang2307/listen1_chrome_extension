@@ -1,5 +1,5 @@
 # Listen 1 (Chrome Extension) V2.33.0
-
+ 插件不支持下载音乐,碰到喜欢的音乐还有抓包,下载,改名,于是就改了插件,支持下载音乐。按钮在歌曲条目操作下班第四个,图标是**收藏**
 （最后更新于 2025 年 6 月 17 日）
 
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
