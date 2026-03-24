@@ -88,3 +88,6 @@
 .li-featured-list:before {
   content: '\e914';
 }
+.li-download:before {
+  content: '\e914';
+}
