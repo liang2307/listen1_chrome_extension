@@ -135,5 +135,63 @@ angular.module('listenone').controller('InstantSearchController', [
       $scope.curpage = $scope.curpagelog[$scope.tab];
       performSearch();
     };
+    $scope.download_music = (song) => {
+      notyf.info(i18next.t('_DOWNLOAD_STARTED'), true);
+      if (!song) {
+        notyf.info(i18next.t('_DOWNLOAD_FAILED'), true);
+        return;
+      }
+      // 使用 MediaService.bootstrapTrack 获取音乐的真实下载链接
+      MediaService.bootstrapTrack(
+        song,
+        (response) => {
+          const downloadUrl = response.url;
+          if (!downloadUrl) {
+            notyf.info(i18next.t('_DOWNLOAD_FAILED'), true);
+            return;
+          }
+          let fileExtension = 'mp3';
+          if (response.format) {
+            fileExtension = response.format.toLowerCase();
+          } else if (downloadUrl) {
+            const urlParts = downloadUrl.split('?')[0].split('.');
+            if (urlParts.length > 1) {
+              const ext = urlParts[urlParts.length - 1].toLowerCase();
+              if (['mp3', 'flac', 'wav', 'ogg', 'aac', 'm4a'].includes(ext)) {
+                fileExtension = ext;
+              }
+            }
+          }
+          const fileName = `${song.artist} - ${song.title}.${fileExtension}`;
+          fetch(downloadUrl)
+            .then(response => {
+              if (!response.ok) {
+                throw new Error('Network response was not ok');
+              }
+              return response.blob();
+            })
+            .then(blob => {
+              const blobUrl = URL.createObjectURL(blob);
+              const link = document.createElement('a');
+              link.href = blobUrl;
+              link.download = fileName;
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+              setTimeout(() => {
+                URL.revokeObjectURL(blobUrl);
+              }, 100);
+              notyf.success(i18next.t('_DOWNLOAD_STARTED'), true);
+            })
+            .catch(error => {
+              console.error('Download failed:', error);
+              notyf.info(i18next.t('_DOWNLOAD_FAILED'), true);
+            });
+        },
+        () => {
+          notyf.info(i18next.t('_DOWNLOAD_FAILED'), true);
+        }
+      );
+    };
   },
 ]);
